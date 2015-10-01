@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<script type="text/javascript" src="cordova.js"></script>
+		<script src="js/angular/angular.js"></script>
+		<script src="js/onsenui.js"></script>
+		<link rel="stylesheet" href="css/onsenui.css" />
+		<link rel="stylesheet" href="css/onsen-css-components.css" />
+		<link rel="stylesheet" href="css/onsen-css-components-blue-basic-theme.css" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Incident Support Helpdesk</title>
+		<script src="script.js"></script>
+	</head>
+	<body ng-controller="IncidentSearchController">
+
+		<ons-navigator animation="slide" var="app.navi">
+		  <ons-page modifier="IncidentSearch_page">
+				<div class="header">
+					<img ng-src="img/windstream_logo.png" class="winlogo winlogo-center">
+				</div>
+				<div style="position:relative">
+				<form name="incidentsearchForm" ng-submit="searchInc(incidentsearchForm)" >
+				<div>
+					<ons-row class="row-lbl">
+						<b><label class="incidentlbl"><i class="tab-bar__icon ion-android-search">  Incident Search</i></label></b>
+					</ons-row>		
+					<ons-row>
+						<input type="text" name="incidentid" autocomplete="off" ng-model="search.incidentid" placeholder="INCXXXXXXXXXXX" 
+						class="text-input" required="required">
+					</ons-row>
+
+					<ons-row class="profile-wrapper row" style="padding: 10px;">
+						<button class="button button--large--cta button-hover" type="submit">Search</button>
+					</ons-row>
+				</div>
+				</form>
+				</div>
+				<div class="footer" style="position:relative">
+					<b><font class="font-rights"></font></b>
+				</div>
+		  </ons-page>
+		</ons-navigator>
+		
+		<ons-template animation="lift" id="incidentPage.html">
+			<ons-page id="incidentDetailPage">
+				<div class="navigation-bar">
+					<div class="navigation-bar__left">
+						<span class="toolbar-button--quiet navigation-bar__line-height" ng-click="backClick()">
+							<i class="ion-android-arrow-back" style="font-size:32px; vertical-align:-6px; color:#ffffff;"></i>
+						</span>
+					</div>
+					<div class="navigation-bar__center"><font style="color:#ffffff;"><i class="ion-calendar"></i> Incident Details</font></div>
+					<div class="navigation-bar__right">
+						<span class="toolbar-button--quiet navigation-bar__line-height">
+							<i class="ion-closed-captioning" style="font-size:32px; vertical-align:-6px;"></i>
+						</span>
+					</div>
+				</div>
+				
+				
+					<ul class="list">
+				  		<li class="list__header"><i class="ion-android-open" style="font-size:20px; color:rgba(38, 100, 171, 0.81);"></i> Incident ID</li>
+				  		<li class="list__item"><span>{{showIncidentID}}</span></li>
+				  		<li class="list__header"><i class="ion-ios-paper" style="font-size:20px; color:rgba(38, 100, 171, 0.81);"></i> Summary</li>
+				  		<li class="list__item">{{showSummary}}</li>
+				  		<li class="list__header"><i class="ion-ios-people" style="font-size:20px; color:rgba(38, 100, 171, 0.81);"></i> Assigned Group</li>
+				  		<li class="list__item">{{showAssignedGroup}}</li>
+				  		<li class="list__header"><i class="ion-android-stopwatch" style="font-size:20px; color:rgba(38, 100, 171, 0.81);"></i>  Status</li>
+				  		<li class="list__item">{{showStatus}}</li>
+					</ul>
+				
+				
+				<div class="tab-bar" style="position:fixed">
+				  <label class="tab-bar__item">
+					<button class="tab-bar__button" ng-click="msgSend()">
+					  <i class="tab-bar__icon ion-android-textsms"></i>
+					</button>
+				  </label>
+				  <label class="tab-bar__item">
+					<button class="tab-bar__button">
+					  <a ng-href="{{telnum}}"><i class="tab-bar__icon ion-android-call"></i></a>
+					</button>
+				  </label>
+				</div>
+			</ons-page>		
+		</ons-template>
+		
+		<ons-template animation="lift" id="ErrorPage.html">
+			<ons-page id="ErrorPage">
+			
+			</ons-page>
+		</ons-template>
+		
+
+
+	<ons-modal var="modal">
+		<ons-icon icon="ion-load-c" spin="true"></ons-icon>
+		<br><br>
+		Please wait.
+	</ons-modal>		
+	</body>
+ </html>

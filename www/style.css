@@ -1,0 +1,118 @@
+.page--IncidentSearch_page__background {
+	background: url("img/bg-repeat.png") #E2E2E2;
+	/*#*/
+}
+.header{
+  /*width: 363px;*/
+  height: 287px;
+  /*background-color: blue;*/
+	/*height: 150px;*/
+}
+.winlogo-center{
+	/*position: absolute;*/
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.winlogo{
+	/*width: 70%;*/
+	margin: 84px auto;
+}
+
+.text-input{
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	/*border-radius: 6px;*/
+	border:solid 1px #B7B7B7;
+	padding: 8px;
+	/*margin: 2% 4%;*/
+    padding: 8px;
+	
+	border-radius: 35px;
+    margin: -10% 4%;
+    padding: 8px;
+    width: 93%;
+}
+
+.row {
+    /*box-sizing: border-box;
+    display: inline;
+    flex-wrap: wrap;
+    width: 100%;*/
+	
+	box-sizing: border-box;
+    display: inline-flex;
+    flex-wrap: wrap;
+    margin: 5px auto;
+    width: 100%;
+}
+
+
+.row-lbl {
+    box-sizing: border-box;
+	margin: -10% 4%;
+    width: 100%;
+}
+
+.incidentlbl{
+	font-style: oblique;
+	font-size: 1.5em;
+	/*font-family:Lucida Sans Unicode;*/
+	font-family: ubuntu;
+}
+
+.button--large--cta {
+font-style: oblique;
+}
+
+.button-hover{
+background-color: #8cc91b;
+}
+
+.font-rights{
+	font-family: Lucida Sans Unicode;
+    font-size: 8px;
+    font-style: oblique;
+}
+
+.navigation-bar{
+	background-color: #8cc91b;
+}
+
+.tab-bar {
+  font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: table;
+  table-layout: fixed;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  height: 49px;
+  background-color: #222;
+  border-top: 1px solid rgba(0,0,0,0);
+  width: 100%;
+}
+
+.list__item {
+	border-bottom: 15px solid #ddd;
+    border-top: medium none lightpink;
+    color:rgba(0, 127, 143, 0.81);
+    display: flex;
+    line-height: 59px;
+    padding: 0 10px;
+}
+
+
+.list__header {
+    background-color: #d5ff8a;
+    color:rgba(38, 100, 171, 0.69);
+    font-size: 19px;
+    line-height: 27px;
+}
+
+
