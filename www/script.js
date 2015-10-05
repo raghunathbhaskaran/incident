@@ -2,7 +2,7 @@ var module = ons.bootstrap('incident-app', ['onsen']);
 module.controller('IncidentSearchController', function($scope,$http,$timeout) {
 
 	$scope.wsUrl='https://vml707.windstream.com/itsm/index.php?callback=JSON_CALLBACK';
-	$scope.wsOnCallUrl='http://localhost:8080/WinHelpdeskSupportLocator/rest/verify';
+	$scope.wsOnCallUrl='http://192.168.26.19:8080/WinHelpdeskSupportLocator/rest/verify';
 	ons.ready(function() {
 		console.log("Device status");
 		//app.navi.pushPage('ErrorPage.html');
