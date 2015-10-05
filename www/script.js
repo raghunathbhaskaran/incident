@@ -4,23 +4,6 @@ module.controller('IncidentSearchController', function($scope,$http,$timeout) {
 	$scope.wsUrl='https://vml707.windstream.com/itsm/index.php?callback=JSON_CALLBACK';
 	$scope.wsOnCallUrl='http://192.168.26.19:8080/WinHelpdeskSupportLocator/rest/verify';
 	ons.ready(function() {
-		console.log("Device status");
-		ons.notification.alert({
-							message: navigator.network.connection.type,
-							title: 'WIN-Helpdesk'
-							});
-		//app.navi.pushPage('ErrorPage.html');
-		if(navigator.network.connection.type == Connection.NONE){
-			console.log("Device is Offline");
-			app.navi.pushPage('ErrorPage.html');
-			ons.notification.alert({
-							message: "No data connection!!!",
-							title: 'WIN-Helpdesk'
-							});
-		}
-		else{
-			console.log("Device is Online");
-		}
 	});
 	
 	$scope.date = new Date();
@@ -96,10 +79,6 @@ module.controller('IncidentSearchController', function($scope,$http,$timeout) {
 				if( 'null' != vSupportTeam ){
 					//$scope.$apply();
 					var vOnCallUrl = $scope.wsOnCallUrl;		
-					ons.notification.alert({
-							message: "Team Name: "+ $scope.wsOnCallUrl,
-							title: 'WIN-Helpdesk'
-							});
 					
 					$http.jsonp(vOnCallUrl+'/'+vSupportTeam+'?callback=JSON_CALLBACK')
 					.success(function(data, status, headers, config) {
