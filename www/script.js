@@ -1,18 +1,18 @@
 var module = ons.bootstrap('incident-app', ['onsen']);
 module.controller('IncidentSearchController', function($scope,$http,$timeout) {
 
-	$scope.wsUrl='http://vml707.windstream.com/itsm/index.php?callback=JSON_CALLBACK';
-	$scope.wsOnCallUrl='http://192.168.26.19:8080/WinHelpdeskSupportLocator/rest/verify';
+	$scope.wsUrl='https://vml707.windstream.com/itsm/index.php?callback=JSON_CALLBACK';
+	$scope.wsOnCallUrl='http://localhost:8080/WinHelpdeskSupportLocator/rest/verify';
 	ons.ready(function() {
 		console.log("Device status");
 		//app.navi.pushPage('ErrorPage.html');
 		if(navigator.network.connection.type == Connection.NONE){
 			console.log("Device is Offline");
 			app.navi.pushPage('ErrorPage.html');
-		//	ons.notification.alert({
-		//					message: "No data connection!!!",
-		//					title: 'WIN-Helpdesk'
-		//					});
+			ons.notification.alert({
+							message: "No data connection!!!",
+							title: 'WIN-Helpdesk'
+							});
 		}
 		else{
 			console.log("Device is Online");
@@ -37,7 +37,7 @@ module.controller('IncidentSearchController', function($scope,$http,$timeout) {
 		if(vIncidentid.length == 15 && vIncidentid.indexOf("INC") > -1 ){
 			var vSupportTeam=null;
 			var url=$scope.wsUrl;
-			$http.jsonp(url,
+		/*	$http.jsonp(url,
 			{ params :{ 'inc_id' : vIncidentid } }
 			)
 			.success(function(data, status, headers, config) {
@@ -81,7 +81,38 @@ module.controller('IncidentSearchController', function($scope,$http,$timeout) {
 					message: "Invalid IncidentID",
 					title: 'WIN-Helpdesk'
 					});
-			})
+			})*/
+			$scope.showIncidentID = vIncidentid;
+				$scope.showSummary = 'Summary';
+				$scope.showAssignedGroup = 'Operations Sys Supp: EPAY';
+				$scope.showStatus = 'Closed';
+				
+				vSupportTeam = 'Operations Sys Supp: EPAY';	
+
+				if( 'null' != vSupportTeam ){
+					//$scope.$apply();
+					var vOnCallUrl = $scope.wsOnCallUrl;		
+					
+					$http.jsonp(vOnCallUrl+'/'+vSupportTeam+'?callback=JSON_CALLBACK')
+					.success(function(data, status, headers, config) {
+					
+					$scope.telnum = 'tel:'+data.strOnCallContact;
+					app.navi.pushPage('incidentPage.html');
+					clearSearch($scope);
+					ons.notification.alert({
+							message: "Team Name: "+ data.strOnCallTeam,
+							title: 'WIN-Helpdesk'
+							});
+					})
+					
+					.error(function(data, status, headers, config) {
+					clearSearch($scope);
+					ons.notification.alert({
+							message: "Invalid Team Name",
+							title: 'WIN-Helpdesk'
+							});
+					})
+				}
 		}
 		else{
 		clearSearch($scope);
@@ -94,7 +125,7 @@ module.controller('IncidentSearchController', function($scope,$http,$timeout) {
 
 	$scope.backClick = function(){
 		ons.notification.confirm({
-			message: 'Do you want to search again?',
+			message: 'Are you want to search again?',
 			title: 'WIN-Helpdesk',
 			buttonLabels: ['Yes', 'No'],
 			animation: 'default', // or 'none'
@@ -117,10 +148,7 @@ module.controller('IncidentSearchController', function($scope,$http,$timeout) {
 			};
 			//alert(messageInfo);
 			sms.sendMessage(messageInfo, function(message) {
-				ons.notification.alert({
-					message: "Message send successfully!",
-					title: 'WIN-Helpdesk'
-					});
+				alert("success: " + message);
 			}, function(error) {
 				alert("code: " + error.code + ", message: " + error.message);
 			});
