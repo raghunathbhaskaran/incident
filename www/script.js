@@ -79,6 +79,7 @@ module.controller('IncidentSearchController', function($scope,$http,$timeout) {
 				if( 'null' != vSupportTeam ){
 					//$scope.$apply();
 					var vOnCallUrl = $scope.wsOnCallUrl;		
+					alert( vOnCallUrl+'/'+vSupportTeam+'?callback=JSON_CALLBACK');
 					
 					$http.jsonp(vOnCallUrl+'/'+vSupportTeam+'?callback=JSON_CALLBACK')
 					.success(function(data, status, headers, config) {
